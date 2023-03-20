@@ -9,15 +9,26 @@ android {
 
     defaultConfig {
         applicationId "com.example.kotlinretrofit"
+        //appId "2234-5678"
+        //manifestPlaceholders = [manifestApplicationId : "${appId}"]
         minSdk 28
         targetSdk 33
         versionCode 1
         versionName "1.0"
+        //buildConfigField("String", "API_KEY", API_KEY)
+
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("local.properties").newDataInputStream())
+        buildConfigField("String", "KEY", "\"${properties.getProperty("KEY")}\"")
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
+        debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -53,4 +64,6 @@ dependencies {
 
     // ViewModel and LiveData
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+
+    implementation project(':authentication')
 }
