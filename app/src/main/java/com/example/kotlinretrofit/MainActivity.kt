@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
             binding.key.setText("package Name: $packageName \n $key")
 
 //            com.rakesh.authentication.Util.methodCall()
-            Toast.makeText(this, "Density = ${resources.displayMetrics.density}  W = " + binding.image.layoutParams.width + " WM = " + binding.image.height , Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Density = ${resources.displayMetrics.density}  W = " + binding.image.layoutParams.width + " WM = " + binding.image.width , Toast.LENGTH_LONG).show()
         }
 
         val siteKey = String(Base64.decode(stringFromJNI(), Base64.DEFAULT))
